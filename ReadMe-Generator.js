@@ -4,29 +4,44 @@ const fs = require('fs')
 inquirer.prompt([
     {
        type: 'input',
-       message: 'What is your user name?',
-       name: 'Name',
+       message: 'What is the title of your Project?',
+       name: 'title',
      },
      {
        type: 'input',
-       message: 'Where are you located?',
-       name: 'location',
+       message: 'What was your motivation for starting this project?',
+       name: 'motivation',
      },
      {
        type: 'input',
-       message: 'Tell me something about yourself',
-       name: 'bio',
+       message: 'Why did you build this project?',
+       name: 'why',
      },
      {
        type: 'input',
-       message: 'What is your Linked in URL?',
-       name: 'Linkedin',
+       message: 'What problems were solved with your project?',
+       name: 'solution',
      },
      {
        type: 'input',
-       message: 'What is your GitHub repo URL?',
-       name: 'Github',
+       message: 'What problems did you encounter and what did you learn?',
+       name: 'problems',
      },
+     {
+        type: 'input',
+        message: 'Any Installation? If yes, please provide instructions',
+        name: 'installation',
+      },
+      {
+        type: 'input',
+        message: 'What is the deployment link URL?',
+        name: 'link',
+      },
+      {
+        type: 'input',
+        message: 'What is the path to your screenshot image?',
+        name: 'screenshot',
+      },
     ])
     
     
@@ -38,20 +53,26 @@ inquirer.prompt([
 
 const generateREADME = function README(response) {
 return `
-# <Your-Project-Title>
+# ${response.title}
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+${response.motivation}
+
+${response.why}
+
+${response.solution}
+
+${response.problems}
 
 ## Installation
 
-![website image](XXXXXXXXX)
+Installation required: ${response.installation}
+
+Deployed website URL: ${response.link}
+
+![website image](${response.screenshot})
 
 ## Credits
 

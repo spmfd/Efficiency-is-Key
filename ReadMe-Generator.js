@@ -66,17 +66,54 @@ ${response.solution}
 
 ${response.problems}
 
+## Table of Contents
+
+[Installation](#installation)
+[Usage](#usage)
+[Credit](#credits)
+[License](#license)
+[Tests](#tests)
+[Questions](#questions)
+
 ## Installation
 
 Installation required: ${response.installation}
 
 Deployed website URL: ${response.link}
 
+## Usage
+
+Provide instructions and examples for use.
+
 ![website image](${response.screenshot})
 
 ## Credits
 
-#License
+Collaborators and their associated GitHub profiles: 
 
+List your collaborators, if any, with links to their GitHub profiles.
+
+Third-party assets used: 
+
+If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+
+Tutorials used: 
+
+If you followed tutorials, include links to those here as well.
+
+
+## License
+
+
+
+## Tests
+
+Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+
+## Questions
+
+For correspondence over email: 
+
+GitHUB User name:
 
 `;}

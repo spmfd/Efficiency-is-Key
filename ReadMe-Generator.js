@@ -42,18 +42,90 @@ inquirer.prompt([
         message: 'What is the path to your screenshot image?',
         name: 'screenshot',
       },
+      {
+        type: 'input',
+        message: 'Please state who you collaborated with for this project',
+        name: 'collaborator',
+      },
+      {
+        type: 'input',
+        message: 'What is the collaborators GitHub profile URL?',
+        name: 'collabgit',
+      },
+      {
+        type: 'input',
+        message: 'What did they assist you with for this project?',
+        name: 'collabwhat',
+      },
+      {
+        type: 'input',
+        message: 'Please state (if any) third-party assets used in the creation of this project?',
+        name: 'thirdparty',
+      },
+      {
+        type: 'input',
+        message: 'If any third-party assets were used, what are their associated URLs?',
+        name: 'thirdpartyurl',
+      },
+      {
+        type: 'input',
+        message: 'List the tutorials used, if any?',
+        name: 'tutorial',
+      },
+      {
+        type: 'input',
+        message: 'URL for tutorials used?',
+        name: 'tutorialurl',
+      },
+      {
+        type: 'input',
+        message: 'What you learned from these tutorials that helped with your project?',
+        name: 'tutorialwhat',
+      },
+      {
+        type: 'input',
+        message: 'What license is used for your Repo?',
+        name: 'license',
+      },
+      {
+        type: 'input',
+        message: 'Examples of necessary tests to get desired results from project',
+        name: 'tests',
+      },
+      {
+        type: 'input',
+        message: 'What is the email you would like to use for future feedback/questions?',
+        name: 'email',
+      },
+      {
+        type: 'input',
+        message: 'What is your Github usernam?',
+        name: 'githubun',
+      },
     ])
     
     
     .then((response) =>
-    fs.writeFile('ReadME.md', generateREADME(response), (err) =>
+    fs.writeFile('ReadME.md', licensebtn(reponse), generateREADME(response, button), (err) =>
     err ? console.error(err) : console.log('Commit logged!')
     ));
 
+const licensebtn = function license(response){
+  if (`${response.license}` == 'MIT') {
+    let button = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+  } else if (`${response.license}` == 'Mozilla'){
+    let button = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+  } else if (`${response.license}` == 'Unlicense'){
+    let button = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
+  }
+}
 
-const generateREADME = function README(response) {
+
+const generateREADME = function README(response, button) {
 return `
 # ${response.title}
+
+${button}
 
 ## Description
 
@@ -89,31 +161,35 @@ Provide instructions and examples for use.
 
 ## Credits
 
-Collaborators and their associated GitHub profiles: 
+Collaborators: ${response.collaborator}
 
-List your collaborators, if any, with links to their GitHub profiles.
+GitHub Profile Links: ${response.collabgit}
 
-Third-party assets used: 
+Help provided: ${response.collabwhat}
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
 
-Tutorials used: 
+Third-party assets used: ${response.thirdparty}
 
-If you followed tutorials, include links to those here as well.
+Creators of third-party assets: ${response.thirdpartyurl}
 
+Tutorials used: ${response.tutorial}
+
+URL for resources:${response.tutorialurl}
+
+Help Provided:${response.tutorialwhat}
 
 ## License
 
-
+License used in Repo: ${response.license}
 
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+Any Tests needed to create the desired results: ${response.tests}
 
 ## Questions
 
-For correspondence over email: 
+For correspondence over email: ${response.email}
 
-GitHUB User name:
+GitHUB User name: ${response.githubun}
 
 `;}

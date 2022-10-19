@@ -23,7 +23,9 @@ Installation required: None, inquirer information has already been installed dir
 
 Provide instructions and examples for use.
 
-![video image](./Assets/Recording%20%231.mp4)
+
+https://user-images.githubusercontent.com/110492974/196571145-16b6625b-ef57-4a16-99b3-d1a1b8d5b83a.mp4
+
 
 ## Credits
 

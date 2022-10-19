@@ -1,6 +1,9 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 
+
+// Questions to create ReadME file
+
 inquirer.prompt([
     {
        type: 'input',
@@ -83,9 +86,10 @@ inquirer.prompt([
         name: 'tutorialwhat',
       },
       {
-        type: 'input',
-        message: 'What license is used for your Repo?',
-        name: 'license',
+        type: "list", 
+        message: "Choose the license you will be using: ",
+        choices: ['MIT', 'Mozilla', 'Unlicense', 'None'],
+        name: "license", 
       },
       {
         type: 'input',
@@ -106,26 +110,29 @@ inquirer.prompt([
     
     
     .then((response) =>
-    fs.writeFile('ReadME.md', licensebtn(reponse), generateREADME(response, button), (err) =>
+    fs.writeFile('ReadME.md', generateREADME(response), (err) =>
     err ? console.error(err) : console.log('Commit logged!')
     ));
 
-const licensebtn = function license(response){
-  if (`${response.license}` == 'MIT') {
-    let button = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
-  } else if (`${response.license}` == 'Mozilla'){
-    let button = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
-  } else if (`${response.license}` == 'Unlicense'){
-    let button = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
+    // Creating a const associated with license badge URLs
+
+  function licenseBadge(license) {
+    const badges = {
+      MIT: `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`,
+      Mozilla: `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`,
+      Unlicense: `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
+    }
+    return badges[license]
   }
-}
 
 
-const generateREADME = function README(response, button) {
+  // Code for all of ReadME file generation
+
+const generateREADME = function README(response) {
 return `
 # ${response.title}
 
-${button}
+${licenseBadge(response.license)}
 
 ## Description
 
@@ -140,12 +147,12 @@ ${response.problems}
 
 ## Table of Contents
 
-[Installation](#installation)
-[Usage](#usage)
-[Credit](#credits)
-[License](#license)
-[Tests](#tests)
-[Questions](#questions)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credit](#credits)
+- [License](#license)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 
